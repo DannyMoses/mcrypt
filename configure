@@ -1,0 +1,12 @@
+#! /bin/bash
+#THis is the config/install script for mcrypt
+
+echo "compiling mcrypt.c..."
+gcc mcrypt.c -o mcrypt
+
+echo "moving program to /usr/bin..."
+# if there were no error, install the program
+
+if [[ $? -eq 0 ]]; then
+		sudo mv mcrypt /usr/bin
+fi
