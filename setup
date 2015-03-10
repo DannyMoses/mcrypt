@@ -1,0 +1,8 @@
+#! /bin/bash
+echo Compiling minit.c...
+gcc minit.c -o minit
+echo Moving to /usr/bin... 
+
+if [[ $? -eq 0 ]]; then
+sudo mv minit /usr/bin
+fi
