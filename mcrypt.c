@@ -12,6 +12,17 @@ void encrypt(char* Message, int pKey) {
   }
 }
 
+int parsekey(char* keyfile) {
+  FILE* pFile;
+  pFile = fopen(keyfile, "r");
+  if (pFile != NULL) {
+    int i;
+    return fscanf(pFile, "%d", &i);
+  } else {
+    perror("The following error has occurred");
+  }
+}
+
 
 int main(int argc, char** argv) {
 	
@@ -21,11 +32,13 @@ int main(int argc, char** argv) {
 
   opterr = 0;
 
-  while ((c = getopt (argc, argv, "k:")) != -1) {
-		
+  while ((c = getopt (argc, argv, "k:f:")) != -1) {
     switch (c) {
     case 'k':
       key = strtol(optarg, NULL, 0);
+      break;
+    case 'f':
+      key = parsekey(optarg);
       break;
     case '?':
       if (optopt == 'k') 
